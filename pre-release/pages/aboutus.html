@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BLNK-V0ID creates unique custom sneakers, hand-painted and designed by an independent artist. Exclusive, wearable art shipped across the USA.">
+    <link rel="canonical" href="https://blnkv0id.com/">
+    <title>BLNK-V0ID | About us</title>
+    <link
+      rel="shortcut icon"
+      href="../assets/imgs/name-img-sinfondo.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="../fontawesome/css/all.min.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Pathway+Gothic+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+     <header id="header" class="sticky-top">
+      <a href="/index.html">
+        <div class="h1-logo">
+          <img id="img-logo" src="../assets/imgs/name-img-sinfondo.png" alt="name" />
+        </div>
+      </a>
+      <!-- Botón del menú hamburguesa para móviles -->
+      <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      
+      <div class="div-navbar" id="navbar">
+        <nav>
+          <ul class="ul-header">
+            <div class="buscador">
+              <form action="/search/" method="GET">
+              <input class="buscador-input"
+                type="text"
+                name="Buscador"
+                placeholder=" Search..."></input>
+                </form>
+                <button class="btn-buscar"><i class="fa-solid fa-magnifying-glass" style="color: white;"></i></button>
+            </div>
+            <li><a href="products.html">First Drop</a></li>
+            <li><a href="#" id="cart-trigger">Cart</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="help.html">Help</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <!--MAIN-->
+    <main>
+      <section id="about-hero">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1 class="hero-title">ABOUT US</h1>
+            <div class="hero-subtitle">THE VOID CALLS</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about-story">
+        <div class="story-container">
+          <div class="story-grid">
+            <div class="story-card story-card-1">
+              <div class="card-content">
+                <h3 class="card-title">REBELLION</h3>
+                <p class="card-text">
+                  At BLNK VOID, we believe fashion is more than clothing — it's a canvas for rebellion, individuality, and raw expression.
+                </p>
+              </div>
+            </div>
+            
+            <div class="story-card story-card-2">
+              <div class="card-content">
+                <h3 class="card-title">ARTISTRY</h3>
+                <p class="card-text">
+                  Born at the intersection of street culture and contemporary art, our pieces are designed to break boundaries and defy expectations.
+                </p>
+              </div>
+            </div>
+            
+            <div class="story-card story-card-3">
+              <div class="card-content">
+                <h3 class="card-title">UNIQUENESS</h3>
+                <p class="card-text">
+                  Every garment is carefully hand-intervened, blending bold graphics, experimental textures, and unexpected details to create wearable statements.
+                </p>
+              </div>
+            </div>
+            
+            <div class="story-card story-card-4">
+              <div class="card-content">
+                <h3 class="card-title">MOVEMENT</h3>
+                <p class="card-text">
+                  We're not just a brand. We're a movement of creators, outsiders, and visionaries who dare to stand apart.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about-manifesto">
+        <div class="manifesto-container">
+          <div class="manifesto-content">
+            <div class="manifesto-text">
+              <h3 class="manifesto-title">THE VOID HAS A SHAPE</h3>
+              <p class="manifesto-paragraph">
+                Join us in shaping the future of fashion — one piece at a time
+              </p>
+            </div>
+            <div class="manifesto-signature">
+              <div class="signature-brand"><h3 class="manifesto-title">BLNK VOID</h3></div>
+              <div class="signature-tagline"><p class="manifesto-paragraph">This is not fashion. It’s a weapon</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+               <!-- Cart Off Canvas -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-offcanvas" id="cartOffcanvas">
+      <div class="cart-header">
+        <h3 class="cart-title">
+          <i class="fa-solid fa-shopping-cart"></i>
+          Shopping Cart
+        </h3>
+        <button class="cart-close" id="cartClose">
+          <i class="fa-solid fa-times"></i>
+        </button>
+      </div>
+      
+      <div class="cart-content">
+        <div class="cart-items" id="cartItems">
+          <!-- Cart items will be populated here -->
+        </div>
+        
+        <div class="cart-empty" id="cartEmpty">
+          <div class="empty-icon">
+            <i class="fa-solid fa-shopping-cart"></i>
+          </div>
+          <h4>Your cart is empty</h4>
+          <p>Add some items to get started</p>
+          <a href="products.html" class="continue-shopping-btn">
+            <i class="fa-solid fa-arrow-left"></i>
+            Continue Shopping
+          </a>
+        </div>
+      </div>
+      
+      <div class="cart-footer" id="cartFooter" style="display: none;">
+        <div class="cart-summary">
+          <div class="summary-row">
+            <span>Subtotal:</span>
+            <span class="cart-subtotal">$0.00</span>
+          </div>
+          <div class="summary-row total">
+            <span>Total:</span>
+            <span class="cart-total">$0.00</span>
+          </div>
+        </div>
+        <div class="cart-actions">
+          <button class="checkout-btn">
+            <i class="fa-solid fa-credit-card"></i>
+            Checkout
+          </button>
+        </div>
+      </div>
+    </div>
+
+    </main>
+    
+    <footer id="foot">
+      <div class="div-foot">
+        <ul class="ul-foot">
+          <li><a href="aboutus.html">About us</a></li>
+          <li><a href="help.html">Help</a></li>
+          <li>®All rights reserved </li>
+          <li>©2025 BLNK-V0ID</li>
+        </ul>
+      </div>
+      
+      <div class="div-foot">
+        <div class="div-foot-i">
+          <a href="https://www.instagram.com/blnk.v0id?igsh=MWVhZ3NlM25xNGluNQ==" target="_blank" rel="noopener"><i class="fa-brands fa-instagram fa-lg"></i></a>
+          <a href="#"><i class="fa-brands fa-tiktok fa-lg"></i></a>
+        </div>
+      </div>
+
+      <div class="div-foot">
+        <div class="mundo-desarrollo">
+          <a href="https://mundodesarrollo.com/" target="_blank" rel="noopener"><p>©2025 Developed by Mundo Desarrollo </p></a>
+        </div>
+      </div>
+      
+    </footer>
+
+          <!-- Development version -->
+      <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+      <!-- Production version -->
+      <script src="https://unpkg.com/lucide@latest"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+    ></script>
+
+    
+    <script src="../js/head-hidden.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/menuHamb.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/carrito.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/checkout.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/script.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

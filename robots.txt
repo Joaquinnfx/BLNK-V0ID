@@ -1,0 +1,20 @@
+
+User-agent: *
+
+# Bloquea rutas internas y sensibles
+
+Disallow: /admin/
+Disallow: /login/
+Disallow: /checkout/
+Disallow: /cart/
+Disallow: /account/
+Disallow: /search/
+Disallow: /tmp/
+Disallow: /cgi-bin/
+
+# Permite todo lo demás
+
+Allow: /
+
+Sitemap: https://blnkv0id.com/sitemap.xml
+

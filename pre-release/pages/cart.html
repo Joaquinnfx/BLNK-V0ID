@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BLNK-V0ID | Cart</title>
+    <link
+      rel="shortcut icon"
+      href="../assets/imgs/logo-img.jpg"
+      type="image/x-icon"
+    />
+   
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Pathway+Gothic+One&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../fontawesome/css/all.min.css" />
+  </head>
+  <body>
+    <header id="header" class="sticky-top">
+       <a href="/index.html">
+        <div class="h1-logo">
+          <img id="img-logo" src="../assets/imgs/name-img-sinfondo.png" alt="name" />
+        </div>
+      </a>
+      
+      <!-- Botón del menú hamburguesa para móviles -->
+      <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      
+      <div class="div-navbar" id="navbar">
+        <nav>
+          <ul class="ul-header">
+            <div class="buscador">
+              <form action="/search/" method="GET">
+              <input class="buscador-input"
+                type="text"
+                name="Buscador"
+                placeholder=" Search..."></input>
+                </form>
+                <button class="btn-buscar"><i class="fa-solid fa-magnifying-glass" style="color: white;"></i></button>
+            </div>
+            <li><a href="products.html">First Drop</a></li>
+            <li><a href="#" id="cart-trigger">Cart</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="help.html">Help</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <!--MAIN-->
+    <main>
+      <!-- Cart Page Section -->
+      <section id="cart-page-section">
+        <div class="cart-page-container">
+          
+          <!-- Page Title -->
+          <div class="cart-page-header">
+            <h1 class="cart-page-title">
+              <i class="fa-solid fa-shopping-cart"></i>
+              Shopping Cart
+            </h1>
+            <p class="cart-page-subtitle">Review your items and proceed to checkout</p>
+          </div>
+
+          <!-- Cart Content -->
+          <div class="cart-page-content">
+            
+            <!-- Cart Items Section -->
+            <div class="cart-items-section">
+              <div class="cart-items-list" id="cartPageItems">
+                <!-- Cart items will be populated here -->
+              </div>
+              
+              <!-- Empty Cart State -->
+              <div class="cart-page-empty" id="cartPageEmpty" style="display: none;">
+                <div class="empty-cart-icon">
+                  <i class="fa-solid fa-shopping-cart"></i>
+                </div>
+                <h3>Your cart is empty</h3>
+                <p>Looks like you haven't added any items to your cart yet.</p>
+                <a href="products.html" class="continue-shopping-page-btn">
+                  <i class="fa-solid fa-arrow-left"></i>
+                  Continue Shopping
+                </a>
+              </div>
+            </div>
+
+            <!-- Checkout Section -->
+            <div class="checkout-section" id="checkoutSection">
+              
+              <!-- Order Summary -->
+              <div class="order-summary">
+                <h3 class="summary-title">Order Summary</h3>
+                <div class="summary-details">
+                  <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span class="page-cart-subtotal">$0.00</span>
+                  </div>
+                  <div class="summary-row">
+                    <span>Shipping:</span>
+                    <span class="shipping-cost">$9.99</span>
+                  </div>
+                  <div class="summary-row">
+                    <span>Tax:</span>
+                    <span class="tax-cost">$0.00</span>
+                  </div>
+                  <div class="summary-row total-row">
+                    <span>Total:</span>
+                    <span class="page-cart-total">$0.00</span>
+                  </div>
+                </div>
+                <button class="proceed-checkout-btn" id="proceedCheckoutBtn">
+                  <i class="fa-solid fa-credit-card"></i>
+                  Proceed to Checkout
+                </button>
+              </div>
+
+              <!-- Checkout Form -->
+              <div class="checkout-form-container" id="checkoutFormContainer" style="display: none;">
+                <h3 class="checkout-title">Checkout Information</h3>
+                
+                <form id="checkoutForm" class="checkout-form">
+                  
+                  <!-- Customer Information -->
+                  <div class="form-section">
+                    <h4 class="section-title">Customer Information</h4>
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label for="firstName">First Name*</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="lastName">Last Name*</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Email*</label>
+                      <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="phone">Phone Number*</label>
+                      <input type="tel" id="phone" name="phone" required>
+                    </div>
+                  </div>
+
+                  <!-- Shipping Information -->
+                  <div class="form-section">
+                    <h4 class="section-title">Shipping Address</h4>
+                    <div class="form-group">
+                      <label for="address">Street Address*</label>
+                      <input type="text" id="address" name="address" required>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label for="city">City*</label>
+                        <input type="text" id="city" name="city" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="state">State*</label>
+                        <input type="text" id="state" name="state" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="zipCode">ZIP Code*</label>
+                        <input type="text" id="zipCode" name="zipCode" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="country">Country*</label>
+                      <select id="country" name="country" required>
+                        <option value="">Select Country</option>
+                        <option value="US">United States</option>
+                        <option value="CA">Canada</option>
+                        <option value="AR">Argentina</option>
+                        <option value="MX">Mexico</option>
+                        <option value="BR">Brazil</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Payment Information -->
+                  <div class="form-section">
+                    <h4 class="section-title">Payment Information</h4>
+                    <div class="form-group">
+                      <label for="cardNumber">Card Number*</label>
+                      <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" required>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label for="expiryDate">Expiry Date*</label>
+                        <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="cvv">CVV*</label>
+                        <input type="text" id="cvv" name="cvv" placeholder="123" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="cardName">Name on Card*</label>
+                      <input type="text" id="cardName" name="cardName" required>
+                    </div>
+                  </div>
+
+                  <!-- Form Actions -->
+                  <div class="form-actions">
+                    <button type="button" class="back-btn" id="backToSummaryBtn">
+                      <i class="fa-solid fa-arrow-left"></i>
+                      Back to Summary
+                    </button>
+                    <button type="submit" class="place-order-btn">
+                      <i class="fa-solid fa-lock"></i>
+                      Place Order
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              <!-- Order Confirmation -->
+              <div class="order-confirmation" id="orderConfirmation" style="display: none;">
+                <div class="confirmation-content">
+                  <div class="success-icon">
+                    <i class="fa-solid fa-check-circle"></i>
+                  </div>
+                  <h3 class="confirmation-title">Order Confirmed!</h3>
+                  <p class="confirmation-message">Thank you for your purchase. Your order has been successfully processed.</p>
+                  <div class="order-details">
+                    <div class="order-number">
+                      <span>Order Number: </span>
+                      <span id="orderNumber">#BLNK-000000</span>
+                    </div>
+                    <div class="order-total">
+                      <span>Total Paid: </span>
+                      <span id="orderTotalPaid">$0.00</span>
+                    </div>
+                  </div>
+                  <div class="confirmation-actions">
+                    <a href="products.html" class="continue-shopping-btn">
+                      <i class="fa-solid fa-arrow-left"></i>
+                      Continue Shopping
+                    </a>
+                    <button class="new-order-btn" id="newOrderBtn">
+                      <i class="fa-solid fa-refresh"></i>
+                      Start New Order
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="foot">
+      <div class="div-foot">
+        <ul class="ul-foot">
+          <li><a href="pre-release/pages/aboutus.html">About us</a></li>
+          <li><a href="pre-release/pages/help.html">Help</a></li>
+          <li>®All rights reserved</li>
+          <li>©2025 BLNK-V0ID</li>
+        </ul>
+      </div>
+      
+      <div class="div-foot">
+        <div class="div-foot-i">
+          <a href="https://www.instagram.com/blnk.v0id?igsh=MWVhZ3NlM25xNGluNQ==" target="_blank" rel="noopener"><i class="fa-brands fa-instagram fa-xl"></i></a>
+          <a href="#"><i class="fa-brands fa-tiktok fa-xl"></i></a>
+        </div>
+      </div>
+
+      <div class="div-foot">
+        <div class="mundo-desarrollo">
+          <a href="https://mundodesarrollo.com/" target="_blank" rel="noopener"><p>©2025 Developed by Mundo Desarrollo </p></a>
+        </div>
+      </div>
+      
+    </footer>
+
+    <!-- Cart Off Canvas -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-offcanvas" id="cartOffcanvas">
+      <div class="cart-header">
+        <h3 class="cart-title">
+          <i class="fa-solid fa-shopping-cart"></i>
+          Shopping Cart
+        </h3>
+        <button class="cart-close" id="cartClose">
+          <i class="fa-solid fa-times"></i>
+        </button>
+      </div>
+      
+      <div class="cart-content">
+        <div class="cart-items" id="cartItems">
+          <!-- Cart items will be populated here -->
+        </div>
+        
+        <div class="cart-empty" id="cartEmpty">
+          <div class="empty-icon">
+            <i class="fa-solid fa-shopping-cart"></i>
+          </div>
+          <h4>Your cart is empty</h4>
+          <p>Add some items to get started</p>
+          <a href="pre-release/pages/products.html" class="continue-shopping-btn">
+            <i class="fa-solid fa-arrow-left"></i>
+            Continue Shopping
+          </a>
+        </div>
+      </div>
+      
+      <div class="cart-footer" id="cartFooter" style="display: none;">
+        <div class="cart-summary">
+          <div class="summary-row">
+            <span>Subtotal:</span>
+            <span class="cart-subtotal">$0.00</span>
+          </div>
+          <div class="summary-row total">
+            <span>Total:</span>
+            <span class="cart-total">$0.00</span>
+          </div>
+        </div>
+        <div class="cart-actions">
+          <button class="checkout-btn">
+            <i class="fa-solid fa-credit-card"></i>
+            Checkout
+          </button>
+        </div>
+      </div>
+    </div>
+
+    
+      <!-- Development version -->
+      <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+      <!-- Production version -->
+      <script src="https://unpkg.com/lucide@latest"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../js/head-hidden.js"></script>
+    <script src="../js/carrito.js"></script>
+    <script src="../js/checkout.js"></script>
+    <script src="../js/menuHamb.js"></script>
+    <script src="../js/script.js"></script>
+    
+  </body>
+</html>
