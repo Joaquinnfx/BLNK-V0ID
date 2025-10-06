@@ -897,6 +897,24 @@ main {
   font-size: 1.2rem;
 }
 
+/* ===== NO PRODUCTS ===== */
+.no-products {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.no-products-text {
+  font-family: "Pathway Gothic One", sans-serif;
+  font-size: 1.8rem;
+  color: #c0c0c0;
+  transition: all 0.4s ease;
+  margin: 25px;
+}
+
 /* Product Quantity Selector */
 .product-quantity-section {
   margin-bottom: 0;

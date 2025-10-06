@@ -28,19 +28,25 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // Quantity selector functionality
-        if (quantityInput && quantityBtns.length > 0) {
+        if (quantityInput && quantityBtns) {
             quantityBtns.forEach(btn => {
                 btn.addEventListener('click', function () {
                     const action = this.dataset.action;
                     let currentValue = parseInt(quantityInput.value);
-                    const min = parseInt(quantityInput.min) || 1;
-                    const max = parseInt(quantityInput.max) || 10;
+                    const min = parseInt(quantityInput.min);
+                    const max = parseInt(quantityInput.max);
+                    console.log(action, currentValue, min, max);
 
                     if (action === 'increase' && currentValue < max) {
-                        quantityInput.value = currentValue + 1;
+                        currentValue++;
+                        quantityInput.value = currentValue;
+                        console.log(currentValue);
                     } else if (action === 'decrease' && currentValue > min) {
-                        quantityInput.value = currentValue - 1;
+                        currentValue--;
+                        quantityInput.value = currentValue;
+                        console.log(currentValue);
                     }
+                    
 
                     // Update button states
                     updateQuantityButtons(card);
@@ -72,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 setTimeout(() => {
                     this.querySelector('span').textContent = originalText;
-                }, 2000);
+                }, 1500);
             });
         }
     });
@@ -81,8 +87,8 @@ document.addEventListener('DOMContentLoaded', function () {
 // Global function to update quantity button states
 function updateQuantityButtons(card) {
     const quantityInput = card.querySelector('.product-quantity-input');
-    const decreaseBtn = card.querySelector('.product-quantity-btn[data-action="decrease"]');
-    const increaseBtn = card.querySelector('.product-quantity-btn[data-action="increase"]');
+    const decreaseBtn = card.querySelector('product-quantity-btn [data-action=decrease]');
+    const increaseBtn = card.querySelector('product-quantity-btn [data-action=increase]');
 
     if (!quantityInput || !decreaseBtn || !increaseBtn) return;
 
@@ -108,5 +114,3 @@ function updateQuantityButtons(card) {
         increaseBtn.style.opacity = '1';
     }
 }
-
-

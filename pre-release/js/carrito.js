@@ -1,25 +1,21 @@
 // Cart System for BLNK-V0ID
+
 class ShoppingCart {
     constructor() {
-        this.products = [];
-        this.carrito = JSON.parse(localStorage.getItem('blnk-cart')) || [];
+        this.products = []; //catálogo de productos
+        this.carrito = JSON.parse(localStorage.getItem('blnk-cart')) || []; //carrito del usuario
         this.init();
     }
 
     async init() {
-        await this.cargarProductos();
-        // Bind event listeners
+        await this.getProducts();
         this.bindEvents();
-        // Update cart display on load
         this.updateCartDisplay();
         
-        // console.log(this.products);
-        this.mostrarProductos();
-        console.log(this.products);
+        // console.log(this.carrito);
     }
 
-   
-    async cargarProductos() {
+    async getProducts() {
             try {
                 const jsonPath = '/pre-release/data/products.json';
                 const response = await fetch(jsonPath);
@@ -91,7 +87,8 @@ class ShoppingCart {
 
         // Extract product information
         const product = {
-            id: Date.now() + Math.random(), // Simple ID generation
+            id: Date.now() + Math.random(),
+            // id: productCard.dataset.id,
             name: productCard.querySelector('.product-title')?.textContent || 'Unknown Product',
             price: this.extractPrice(productCard),
             image: productCard.querySelector('.product-main-img')?.src || '../assets/imgs/logo-img.jpg',
@@ -118,27 +115,30 @@ class ShoppingCart {
     }
 
     addToCart(product) {
-        // Check if product already exists in cart
-        const existingItem = this.products.find(item => item.name === product.name);
+        //Verifica si el producto ya existe en el carrito
+        const existingItem = this.carrito.find(item => item.name === product.name);
 
-        if (existingItem) {
-            existingItem.quantity += 1;
+        if (existingItem) { //Si existe, se agrega la cantidad
+            existingItem.quantity += product.quantity;
         } else {
-            this.products.push(product);
+            // this.products.stock -= product.quantity;
+            this.carrito.push(product); //Si no existe, se agrega el producto al carrito
+            
         }
-
+        console.log(this.products);
         this.saveCart();
         this.updateCartDisplay();
     }
 
     removeFromCart(productId) {
-        this.products = this.products.filter(item => item.id !== productId);
+        this.carrito = this.carrito.filter(item => item.id !== productId);
+        // this.products.stock += product.quantity;
         this.saveCart();
         this.updateCartDisplay();
     }
 
     updateQuantity(productId, newQuantity) {
-        const item = this.products.find(item => item.id === productId);
+        const item = this.carrito.find(item => item.id === productId);
         if (item) {
             if (newQuantity <= 0) {
                 this.removeFromCart(productId);
@@ -179,7 +179,7 @@ class ShoppingCart {
 
         if (!cartItems || !cartEmpty || !cartFooter) return;
 
-        if (this.products.length === 0) {
+        if (this.carrito.length === 0) {
             cartItems.style.display = 'none';
             cartEmpty.style.display = 'flex';
             cartFooter.style.display = 'none';
@@ -197,9 +197,10 @@ class ShoppingCart {
         const cartItems = document.getElementById('cartItems');
         if (!cartItems) return;
 
-        cartItems.innerHTML = this.products.map(item => `
+        cartItems.innerHTML = this.carrito.map(item => 
+            `
             <div class="cart-item" data-id="${item.id}">
-                <img src="${item.image1}" alt="${item.name}" class="cart-item-image">
+                <img src="${item.image}" alt="${item.name}" class="cart-item-image">
                 <div class="cart-item-details">
                     <h4 class="cart-item-name">${item.name}</h4>
                     <div class="cart-item-price">$${item.price.toFixed(2)}</div>
@@ -220,7 +221,6 @@ class ShoppingCart {
                 </div>
             </div>
         `).join('');
-
         // Bind events for cart item controls
         this.bindCartItemEvents();
     }
@@ -232,7 +232,7 @@ class ShoppingCart {
             btn.addEventListener('click', (e) => {
                 const action = btn.dataset.action;
                 const itemId = parseFloat(btn.dataset.id);
-                const item = this.products.find(i => i.id === itemId);
+                const item = this.carrito.find(i => i.id === itemId);
 
                 if (item) {
                     if (action === 'increase') {
@@ -270,7 +270,7 @@ class ShoppingCart {
     }
 
     getSubtotal() {
-        return this.products.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        return this.carrito.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     }
 
     getTotal() {
@@ -279,11 +279,11 @@ class ShoppingCart {
     }
 
     getItemCount() {
-        return this.products.reduce((count, item) => count + item.quantity, 0);
+        return this.carrito.reduce((count, item) => count + item.quantity, 0);
     }
 
     saveCart() {
-        localStorage.setItem('blnk-cart', JSON.stringify(this.products));
+        localStorage.setItem('blnk-cart', JSON.stringify(this.carrito));
     }
 
     showAddedAnimation(button) {
@@ -304,7 +304,7 @@ class ShoppingCart {
     }
 
     checkout() {
-        if (this.products.length === 0) {
+        if (this.carrito.length === 0) {
             alert('Your cart is empty!');
             return;
         }
@@ -327,7 +327,7 @@ class ShoppingCart {
 
     // Method to clear cart (useful for testing)
     clearCart() {
-        this.products = [];
+        this.carrito = [];
         this.saveCart();
         this.updateCartDisplay();
     }
@@ -335,9 +335,6 @@ class ShoppingCart {
 
 // Initialize cart when DOM is loaded
 document.addEventListener('DOMContentLoaded', function () {
-    // Initialize the shopping cart
+    
     window.shoppingCart = new ShoppingCart();
-
-    // Optional: Add a global method to clear cart for testing
-    window.clearCart = () => window.shoppingCart.clearCart();
 });

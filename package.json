@@ -1,0 +1,25 @@
+{
+  "name": "blnk-v0id-final-host",
+  "version": "1.0.0",
+  "main": "script.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joaquinnfx/BLNK-V0ID.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Joaquinnfx/BLNK-V0ID/issues"
+  },
+  "homepage": "https://github.com/Joaquinnfx/BLNK-V0ID#readme",
+  "description": "",
+  
+  "dependencies": {
+    "lucide": "^0.536.0"
+  }
+}

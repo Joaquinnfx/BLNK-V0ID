@@ -29,7 +29,6 @@
     });
 
 //Boton WhatsApp
-
 const btnWpp = document.createElement('a'); 
   btnWpp.innerHTML = `<a href="https://wa.me/+17282026267?text=Hi! I would like more information about BLNK-V0ID. 🚀" 
   target="_blank"
