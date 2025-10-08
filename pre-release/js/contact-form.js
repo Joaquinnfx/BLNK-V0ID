@@ -1,15 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Script de formulario cargado correctamente');
     
     const contactForm = document.querySelector('.contact-form');
-    console.log('📝 Formulario encontrado:', contactForm);
     
     if (contactForm) {
-        console.log('✅ Formulario encontrado, agregando evento submit');
         
-        // Evento principal simple y funcional
+        
+        // Evento principal 
         contactForm.addEventListener('submit', function(e) {
-            console.log('📤 Formulario enviado - previniendo recarga');
+            
             e.preventDefault();
             
             // Obtener los valores del formulario
@@ -17,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const email = document.getElementById('email').value.trim();
             const message = document.getElementById('message').value.trim();
             
-            console.log('📝 Valores del formulario:', { name, email, message });
+            
             
             // Validar campos
             if (!name || !email || !message) {
@@ -39,21 +37,21 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.innerHTML = '<span class="btn-text">SENDING...</span><span class="btn-icon"><i class="fa-solid fa-circle-notch fa-spin"></i></span>';
             submitBtn.disabled = true;
             
-            // Enviar formulario - RUTA CORREGIDA
+            // Enviar formulario
             console.log('📤 Enviando formulario a /pre-release/process-form.php');
             fetch('/pre-release/process-form.php', {
                 method: 'POST',
                 body: formData
             })
             .then(response => {
-                console.log('📨 Respuesta recibida:', response);
+                
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 return response.json();
             })
             .then(data => {
-                console.log('📊 Datos recibidos:', data);
+                
                 if (data.success) {
                     // Mostrar mensaje de éxito
                     showMessage(data.message, 'success');
@@ -69,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .finally(() => {
                 // Restaurar botón
-                console.log('🔄 Restaurando botón');
+                
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
             });
@@ -83,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Función para mostrar mensajes
     function showMessage(message, type) {
-        console.log('💬 Mostrando mensaje:', type, message);
+        
         
         // Remover mensajes anteriores
         const existingMessage = document.querySelector('.form-message');
@@ -109,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const formContainer = document.querySelector('.form-content');
         if (formContainer) {
             formContainer.appendChild(messageDiv);
-            console.log('✅ Mensaje insertado correctamente');
+            
             
             // Agregar clase para animación de entrada
             setTimeout(() => {
@@ -128,9 +126,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }, 6000);
         } else {
-            console.error('❌ No se encontró el contenedor del formulario');
+            console.error('Error: No se encontró el contenedor del formulario');
         }
     }
     
-    console.log('🎯 Script completamente cargado y configurado');
 });
