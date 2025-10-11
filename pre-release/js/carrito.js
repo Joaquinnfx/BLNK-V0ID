@@ -1,5 +1,4 @@
 // Cart System for BLNK-V0ID
-
 class ShoppingCart {
     constructor() {
         this.products = []; //catálogo de productos
@@ -11,8 +10,6 @@ class ShoppingCart {
         await this.getProducts();
         this.bindEvents();
         this.updateCartDisplay();
-        
-        // console.log(this.carrito);
     }
 
     async getProducts() {

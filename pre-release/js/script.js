@@ -1,4 +1,5 @@
 // Funcionalidad de la galeria y el selector de cantidad
+
 document.addEventListener('DOMContentLoaded', function () {
     // Obtener todas las cards de productos
     const productCards = document.querySelectorAll('.product-card');
