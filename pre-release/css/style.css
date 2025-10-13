@@ -18,8 +18,8 @@ header {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 150px;
-  transition: 0.5s;
+  height: 110px;
+  transition: 0.4s;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -28,7 +28,7 @@ header {
 }
 
 .head-oculto {
-  top: -152px;
+  top: -112px;
   transition: top 0.4s ease;
 }
 
@@ -49,7 +49,7 @@ header a {
 
 #img-logo {
   width: 100%;
-  height: 170px;
+  height: 110px;
   object-fit: cover;
   transition: transform 0.3s ease;
 }
@@ -382,7 +382,7 @@ main {
   align-items: center;
   justify-content: center;
   padding: 25px;
-  height: 350px;
+  height: 400px;
   width: 100%;
   background: linear-gradient(135deg, #1f1f1f 0%, #393939 50%, #0f0f0f 100%);
 }
@@ -415,48 +415,55 @@ main {
 /* ===== SECTION DROPS ===== */
 
 .section-drops{
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
   padding: 25px;
   height: 100%;
-  width: 100%;
-  align-items: flex-start;
-  justify-content: center;
+}
+
+.grid-drops{
+  display: grid;
+  /* grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); */
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 95vh);
+  gap: 25px;
+  padding: 10px;
 }
 
 .cards-drops{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  height: 100%;
-}
-
-.drops{
   border: 1px solid #c0c0c0;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
+  padding: 10px;
+  box-shadow: 1px 3px 13px 1px rgba(227, 227, 227, 0.2);
+  transition: all 0.4s ease;
+}
+
+.cards-drops:hover{
+  transform: translateY(-5px);
+  box-shadow: 1px 3px 13px 1px rgba(227, 227, 227, 0.5);
+  transition: all 0.4s ease;
+}
+
+.drops-img{
+  height: 50%;
+  width: 100%;
+  padding: 10px;
   border-radius: 10px;
-  margin: 10px;
+}
+
+.drops-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 50%;
+  width: 100%;
 }
 
 .drops-img img{
+  object-fit: cover;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transition: all 0.3s ease;
-}
-
-.drops-img img:hover {
-  transform: scale(1.5);
-  z-index: 10;
-  position: relative;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
 }
 
 #drops-img-blurred {
@@ -2394,6 +2401,7 @@ li:hover {
 
   header {
     height: 100px;
+    padding: 0px 15px;
   }
 
   #img-logo {
@@ -2457,13 +2465,48 @@ li:hover {
     width: 45px;
     height: 45px;
   }
+  /*CARROUSEL RESPONSIVE*/
+
+  .carrousel-section{
+    height: 50vh;
+  }
+
+  .div-carrousel{
+    height: 50vh;
+  }
+
+  .vc-viewport{
+    height: 50vh;
+  }
+
+  .grid-limited-edition{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    height: 40vh;
+  }
+
+  .void-carrousel{
+    height: 50vh;
+  }
 
   .vc-arrow {
     width: 40px;
     height: 40px;
   }
-  .vc-viewport {
-    height: clamp(200px, 56vw, 320px);
+ 
+  /* BANNER RESPONSIVE */
+
+  .div-banner{
+    text-align: center;
+  }
+
+  .grid-drops{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(3, 1fr);
   }
 
   /* ==== CART PAGE RESPONSIVE ==== */
