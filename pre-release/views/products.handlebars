@@ -1,0 +1,86 @@
+<main>
+  <section class="products-hero">
+    <div class="overlay" id="products-overlay">
+      <h1 class="section-title">Our Products</h1>
+        <p class="section-subtitle">20 pairs. No restock</p>
+    </div>
+  </section>
+      <section class="banner-products">
+        <div class="div-banner">
+          <h2> ~ The void is forming ~ </h2>
+            <p>20 pairs. No restock</p>
+          <a href="#productsGrid" class="continue-shopping-btn">
+            [ Explore Collection ]
+          </a>
+        </div>
+      </section>
+
+{{!-- GRID PRODUCTOS --}}
+<section class="products-section" id="products-section">
+  <!-- Fondo tipo "Vercel Grid" -->
+  <div class="grid-background">
+  </div>
+  {{#if products}}
+  <div class="products-grid" id="productsGrid"> 
+      {{#each products}}
+        <div class="product-card">
+          <div class="product-images">
+            <img src={{this.image1}} alt={{this.name}} class="product-main-img"/>
+            <div class="product-gallery">
+              <img src={{this.image2}} alt={{this.name}} class="product-thumb">
+              <img src={{this.image3}} alt={{this.name}} class="product-thumb">
+              <img src={{this.image4}} alt={{this.name}} class="product-thumb">
+            </div>
+          </div>
+          <div class="product-info">
+            <h2 class="product-title">{{this.name}}</h2>
+            <p class="product-description">{{this.description}}</p>
+            <div class="product-details">
+              {{#if this.stock}} 
+              <div class="product-price">
+                <span class="price-currency">$</span>
+                <span class="price-amount">{{this.price}}</span>
+              </div>
+              <div class="product-stock">
+                <span class="stock-label">Stock:</span>
+                <span class="stock-amount">{{this.stock}}</span>
+                <span class="stock-unit">units</span>
+              </div>
+              <div class="product-actions">
+                <div class="product-quantity-section">
+                  <label class="quantity-label">Quantity:</label>
+                  <div class="product-quantity-controls">
+                    <button id="btnDecrease" type="button" class="product-quantity-btn" data-action="decrease" data-id={{this.id}}>
+                      <i class="fa-solid fa-minus"></i>
+                    </button>
+                    <input type="number" class="product-quantity-input" value="1" min="1" max={{this.stock}}>
+                    <button id="btnIncrease" type="button" class="product-quantity-btn" data-action="increase" data-id={{this.id}}>
+                      <i class="fa-solid fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+                <button class="add-to-cart-btn" data-product-id={{this.id}}>
+                  <i class="fa-solid fa-shopping-cart"></i>
+                  <span>Add to Cart</span>
+                </button>
+              </div>
+              {{else}}
+              <div class="product-stock">
+                <span class="sold-out">SOLD OUT</span>
+              </div>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      {{/each}}
+  </div>
+    {{else}}
+    <div class="no-products">
+      <h2>NO PRODUCTS</h2>
+      <button id="glitchButton" class="glitch-btn" data-text="Back to Home">
+      <span class="glitch-text">Back to Home</span>
+      </button>
+    </div>
+    {{/if}}
+</section>
+</main>

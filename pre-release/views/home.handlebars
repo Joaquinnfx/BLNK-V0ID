@@ -1,0 +1,133 @@
+
+<!--MAIN-->
+    <main>
+      <section class="carrousel-section">
+        <div class="div-carrousel">
+          <div class="void-carrousel" aria-roledescription="carousel">
+            <button class="vc-arrow vc-prev" aria-label="Anterior">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <div class="vc-viewport">
+             <!--GRID -->
+             <div class="grid-limited-edition">
+              <h1><i class="fa-solid fa-hashtag"></i>DROP_01</h1>
+              <p class="p1">Handmade by BLNK-V0ID</p>
+              <div class="p2-container">
+                <p class="p2">Only <span class="limited-units">
+                  {{#if featuredProduct.stock}}{{featuredProduct.stock}}
+                  {{else}}1
+                  {{/if}}
+                  </span>units</p>
+              </div>
+              <a href="/products" class="continue-shopping-btn">
+                <i class="fa-solid fa-arrow-right"></i>
+                  Buy Now
+              </a>
+              </div>
+              <!--GRID -->
+              <div class="vc-track">
+                <div class="vc-slide is-active">
+                  <img src="assets/imgs/img-final-3.jpg" alt="Custom sneaker artwork 1" />
+                </div>
+                <div class="vc-slide">
+                  <img src="assets/imgs/img-final-2.jpg" alt="Custom sneaker artwork 2" />
+                </div>
+                <div class="vc-slide">
+                  <img src="assets/imgs/img-final-1.jpg" alt="Custom sneaker artwork 3" />
+                </div>
+              </div>
+            </div>
+            <button class="vc-arrow vc-next" aria-label="Siguiente">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            <div class="vc-dots" aria-label="Selector de diapositivas"></div>
+          </div>
+        </div>
+      </section>
+      {{!-- <section class="carrousel-section">
+  <div class="div-carrousel">
+    <div class="void-carrousel" aria-roledescription="carousel">
+      <button class="vc-arrow vc-prev" aria-label="Anterior">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+
+      <div class="vc-viewport">
+        <!--GRID -->
+        {{#each products}}
+        <div class="vc-slide"{{#if @first}}"is-active"{{/if}}>
+          <div class="grid-limited-edition">
+            <h1><i class="fa-solid fa-hashtag"></i>{{this.name}}</h1>
+            <p class="p1">Handmade by BLNK-V0ID</p>
+            <div class="p2-container">
+              {{#if this.stock}}
+              <p class="p2">
+                Only <span class="limited-units">{{this.stock}}</span> units
+              </p>
+              {{else}}
+              <p class="p2 sold-out">SOLD OUT</p>
+              {{/if}}
+            </div>
+            <a href="/products" class="continue-shopping-btn">
+              <i class="fa-solid fa-arrow-right"></i>
+              Buy Now
+            </a>
+          </div>
+
+          <div class="vc-slide-image">
+            <img
+              src={{this.image1}}
+              alt={{this.name}}
+              class="d-block w-100"
+            />
+          </div>
+        </div>
+        {{/each}}
+        <!--GRID -->
+      </div>
+
+      <button class="vc-arrow vc-next" aria-label="Siguiente">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+
+      <div class="vc-dots" aria-label="Selector de diapositivas"></div>
+    </div>
+  </div>
+</section> --}}
+      <section class="banner">
+        <div class="div-banner">
+          <h2>Design to disrupt ~ Made to empower</h2>
+          <p>Are you ready to disrupt?</p>
+          <a href="/products" class="continue-shopping-btn">
+            [ Explore Collection ]
+          </a>
+        </div>
+      </section>
+  <!-- SECTION DROPS -->
+      <section class="section-drops" id="section-drops">
+        <div class="container-drops">
+          <div class="first-container">
+            <img src="/assets/imgs/airforce-img1-sinfondo.png" alt="Main image">
+          </div>
+           <div class="second-container">
+            <div class="image-row">
+              <img src="/assets/imgs/airforce-img1-sinfondo.png" alt="">
+              <img src="/assets/imgs/airforce-img1-sinfondo.png" alt="">
+            </div>
+            <div class="drops-info">
+              <div class="text1">
+              <h2>CUSTOM NIKE AIR FORCE 1</h2>
+              <p>Custom by blnk.v0id<br>Hand-Embellished</p>
+            </div>
+            <div class="text2">
+              <h2>Features</h2>
+              <p>Black CrystalsChrome<br>Bar Wire Charms</p>
+            </div>
+            </div>
+            <div class="image-row2">
+              <img src="/assets/imgs/airforce-img1-sinfondo.png" alt="">
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>

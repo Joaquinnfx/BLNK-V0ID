@@ -1,0 +1,63 @@
+<main>
+  <!-- Cart Page Section -->
+  <section id="cart-page-section">
+    <div class="cart-page-container">
+      <!-- Page Title -->
+      <div class="cart-page-header">
+        <h1 class="cart-page-title">
+          <i class="fa-solid fa-shopping-cart"></i>
+          Shopping Cart
+        </h1>
+        <p class="cart-page-subtitle">Review your items before checkout</p>
+      </div>
+
+      <!-- Cart Content -->
+      <div class="cart-page-content">
+        <!-- Cart Items Section -->
+        <div class="cart-items-section" id="cartItems">
+          <div class="cart-items-list" id="cartPageItems">
+            <!-- Cart items will be dynamically injected here -->
+          </div>
+          <a href="/products" id="btn-volver-unico" class="continue-shopping-page-btn">
+              <i class="fa-solid fa-arrow-left"></i>
+              Continue Shopping
+          </a>
+          <!-- Empty Cart State -->
+          <div class="cart-page-empty" id="cartPageEmpty" style="display: none;">
+            <div class="empty-cart-icon">
+              <i class="fa-solid fa-shopping-cart"></i>
+            </div>
+            <h3>Your cart is empty</h3>
+            <p>Looks like you haven't added any items to your cart yet.</p>
+            <a href="/products" class="continue-shopping-page-btn">
+              <i class="fa-solid fa-arrow-left"></i>
+              Continue Shopping
+            </a>
+          </div>
+        </div>
+        <!-- Checkout Section -->
+        <div class="checkout-section" id="checkoutSection">
+          <!-- Order Summary -->
+          <div class="order-summary">
+            <h3 class="summary-title">Order Summary</h3>
+            <div class="summary-details">
+              <div class="summary-row">
+                <span>Subtotal:</span>
+                <span class="page-cart-subtotal">$0.00</span>
+              </div>
+              <div class="summary-row total-row">
+                <span>Total:</span>
+                <span class="page-cart-total">$0.00</span>
+              </div>
+            </div>
+            <!-- Stripe Checkout Button -->
+            <button class="proceed-checkout-btn" id="proceedCheckoutBtn">
+              <i class="fa-solid fa-credit-card"></i>
+              Proceed to Checkout
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

@@ -1,0 +1,42 @@
+<section id="success-section">
+  <div class="success-container">
+    <div class="success-icon">
+      <i class="fa-solid fa-circle-check"></i>
+    </div>
+
+    <h1 class="success-title">Payment Successful</h1>
+    <p class="success-message">
+      Thank you for your purchase! Your order has been confirmed and is being processed.
+    </p>
+
+    <div class="success-details">
+      <p><strong>Order ID:</strong> {{order_id}}</p>
+      <p><strong>Email:</strong> {{customer_email}}</p>
+      <p><strong>Total Paid:</strong> ${{total_amount}}</p>
+    </div>
+    {{#if items.length}}
+  <div class="success-items">
+    <h2>Items Purchased</h2>
+    <ul>
+      {{#each items}}
+      <li class="item-card">
+        <div class="item-name">{{name}}</div>
+        <div class="item-qty">Quantity: {{quantity}}</div>
+        <div class="item-price">${{price}}</div>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+  {{/if}}
+    <div class="success-actions">
+      <a href="/products" class="continue-shopping-btn">
+        <i class="fa-solid fa-arrow-left"></i>
+        Continue Shopping
+      </a>
+      <a href="/" class="home-btn">
+        <i class="fa-solid fa-house"></i>
+        Back to Home
+      </a>
+    </div>
+  </div>
+</section>
