@@ -1,6 +1,6 @@
 // Funcionalidad de la galeria y el selector de cantidad
-
 document.addEventListener('DOMContentLoaded', function () {
+    AOS.init();
     // Obtener todas las cards de productos
     const productCards = document.querySelectorAll('.product-card');
 
@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const addToCartBtn = card.querySelector('.add-to-cart-btn');
         const quantityInput = card.querySelector('.product-quantity-input');
         const quantityBtns = card.querySelectorAll('.product-quantity-btn');
+        const sizeSelect = card.querySelector('.size-select');
 
         // Funcionalidad de la galeria para cada card
         if (mainImage && thumbnails.length > 0) {
@@ -54,20 +55,24 @@ document.addEventListener('DOMContentLoaded', function () {
             addToCartBtn.addEventListener('click', async () => {
                 const productId = addToCartBtn.dataset.productId;
                 const quantity = parseInt(quantityInput.value) || 1;
-
+              //Logica del size
+                const size = sizeSelect.value;
+              //Validacion de size
+              if(!size){
+                showCartNotification('Please select a size before adding to cart', 'error');
+                return;
+              };
                 try {
-                    const response = await fetch(`/api/cart/add/${productId}`, {
+                    console.log("SIZE SELECCIONADO:", size);
+                    const response = await fetch(`/cart/add/${productId}`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({ quantity })
+                        body: JSON.stringify({ quantity, size })
                     });
-
                     const data = await response.json();
-
                     if (response.ok) {
-                        console.log('Producto agregado:', data);
                         showCartNotification('Product added to cart', 'success');
                     } else {
                         console.error('Error al agregar producto:', data);
@@ -109,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
 const carousels = document.querySelectorAll(".void-carrousel");
 carousels.forEach(initCarousel);
 
-}); //Cierre del addEventListener principal
+});//Cierre del addEventListener principal
 
 // Funcionalidad del carousel
 function initCarousel(root) {
@@ -308,26 +313,47 @@ function updateQuantityButtons(card) {
     }, 100);
   }
 
-const glitchButton = document.getElementById("glitchButton");
-const glitchText = document.querySelector(".glitch-text");
+//Modal Size Guide
+const sizeGuideModal = document.getElementById("size-guide-modal");
+const openButtons = document.querySelectorAll(".size-guide-link");
+const closeBtn = sizeGuideModal.querySelector(".close-btn");
 
-const messages = [
-  "Signal me next drop ",
-  "Wake me when it drops ",
-  "Awaiting transmission...",
-  "Glitched out — try again",
-  "Enter the void "
-];
-
-glitchButton.addEventListener("mouseenter", () => {
-  const randomMsg = messages[Math.floor(Math.random() * messages.length)];
-  glitchText.textContent = randomMsg;
+openButtons.forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      sizeGuideModal.classList.add("active");
+      document.body.style.overflow = 'hidden'; // Evita el scroll del fondo
+    });
 });
 
-glitchButton.addEventListener("mouseleave", () => {
-  glitchText.textContent = "Back to Home";
+closeBtn.addEventListener("click",() => {
+    sizeGuideModal.classList.remove("active");
+    document.body.style.overflow = ''; // Restaura el scroll
 });
 
-glitchButton.addEventListener("click", () => {
-  window.location.href = "/"; // o podés cambiar por otra acción
-});
+
+
+// const glitchButton = document.getElementById("glitchButton");
+// const glitchText = document.querySelector(".glitch-text");
+
+// const messages = [
+//   "Signal me next drop ",
+//   "Wake me when it drops ",
+//   "Awaiting transmission...",
+//   "Glitched out — try again",
+//   "Enter the void "
+// ];
+
+// glitchButton.addEventListener("mouseenter", () => {
+//   const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+//   glitchText.textContent = randomMsg;
+// });
+
+// glitchButton.addEventListener("mouseleave", () => {
+//   glitchText.textContent = "Back to Home";
+// });
+
+// glitchButton.addEventListener("click", () => {
+//   window.location.href = "/";
+// });
+

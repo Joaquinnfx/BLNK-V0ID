@@ -9,8 +9,8 @@
             </button>
             <div class="vc-viewport">
              <!--GRID -->
-             <div class="grid-limited-edition">
-              <h1><i class="fa-solid fa-hashtag"></i>DROP_01</h1>
+             <div class="grid-limited-edition" data-aos="zoom-in" data-aos-duration="1500">
+              <h1 id="home-title"><i class="fa-solid fa-hashtag"></i>First Drop</h1>
               <p class="p1">Handmade by BLNK-V0ID</p>
               <div class="p2-container">
                 <p class="p2">Only <span class="limited-units">
@@ -27,13 +27,13 @@
               <!--GRID -->
               <div class="vc-track">
                 <div class="vc-slide is-active">
-                  <img src="assets/imgs/img-final-3.jpg" alt="Custom sneaker artwork 1" />
+                  <img src="/assets/imgs/foto-car-1.webp" alt="Custom sneaker artwork 1" />
                 </div>
                 <div class="vc-slide">
-                  <img src="assets/imgs/img-final-2.jpg" alt="Custom sneaker artwork 2" />
+                  <img src="/assets/imgs/foto-car-2.webp" alt="Custom sneaker artwork 2" />
                 </div>
                 <div class="vc-slide">
-                  <img src="assets/imgs/img-final-1.jpg" alt="Custom sneaker artwork 3" />
+                  <img src="/assets/imgs/foto-car-3.webp" alt="Custom sneaker artwork 3" />
                 </div>
               </div>
             </div>
@@ -44,57 +44,9 @@
           </div>
         </div>
       </section>
-      {{!-- <section class="carrousel-section">
-  <div class="div-carrousel">
-    <div class="void-carrousel" aria-roledescription="carousel">
-      <button class="vc-arrow vc-prev" aria-label="Anterior">
-        <i class="fa-solid fa-chevron-left"></i>
-      </button>
-
-      <div class="vc-viewport">
-        <!--GRID -->
-        {{#each products}}
-        <div class="vc-slide"{{#if @first}}"is-active"{{/if}}>
-          <div class="grid-limited-edition">
-            <h1><i class="fa-solid fa-hashtag"></i>{{this.name}}</h1>
-            <p class="p1">Handmade by BLNK-V0ID</p>
-            <div class="p2-container">
-              {{#if this.stock}}
-              <p class="p2">
-                Only <span class="limited-units">{{this.stock}}</span> units
-              </p>
-              {{else}}
-              <p class="p2 sold-out">SOLD OUT</p>
-              {{/if}}
-            </div>
-            <a href="/products" class="continue-shopping-btn">
-              <i class="fa-solid fa-arrow-right"></i>
-              Buy Now
-            </a>
-          </div>
-
-          <div class="vc-slide-image">
-            <img
-              src={{this.image1}}
-              alt={{this.name}}
-              class="d-block w-100"
-            />
-          </div>
-        </div>
-        {{/each}}
-        <!--GRID -->
-      </div>
-
-      <button class="vc-arrow vc-next" aria-label="Siguiente">
-        <i class="fa-solid fa-chevron-right"></i>
-      </button>
-
-      <div class="vc-dots" aria-label="Selector de diapositivas"></div>
-    </div>
-  </div>
-</section> --}}
-      <section class="banner">
-        <div class="div-banner">
+  <!-- BANNER -->
+      <section class="banner-products">
+        <div class="div-banner" data-aos="zoom-in" data-aos-duration="1500">
           <h2>Design to disrupt ~ Made to empower</h2>
           <p>Are you ready to disrupt?</p>
           <a href="/products" class="continue-shopping-btn">
@@ -103,31 +55,116 @@
         </div>
       </section>
   <!-- SECTION DROPS -->
+    <h2 class="section-title title-products" data-aos="zoom-in" data-aos-duration="1500"> Drop 1.1 </h2>
+    {{!-- CLASSIC BLACK --}}
       <section class="section-drops" id="section-drops">
-        <div class="container-drops">
+        <div class="container-drops" data-aos="zoom-in" data-aos-duration="1500">
           <div class="first-container">
-            <img src="/assets/imgs/airforce-img1-sinfondo.png" alt="Main image">
+            <img src="/assets/imgs/IMG_2603-xl.jpg" alt="Main image">
           </div>
            <div class="second-container">
             <div class="image-row">
-              <img src="/assets/imgs/airforce-img1-sinfondo.png" alt="">
-              <img src="/assets/imgs/airforce-img1-sinfondo.png" alt="">
+              <div class="image-row-div">
+                <img src="/assets/imgs/IMG_2734.webp" alt="V.01">
+              </div>
+              <div class="image-row-div no-border">
+                <img src="/assets/imgs/IMG_2736.webp" alt="V.01">
+              </div>
             </div>
             <div class="drops-info">
               <div class="text1">
-              <h2>CUSTOM NIKE AIR FORCE 1</h2>
+              <h2>VOIDBINDER EDITION V.01</h2>
               <p>Custom by blnk.v0id<br>Hand-Embellished</p>
             </div>
             <div class="text2">
               <h2>Features</h2>
-              <p>Black CrystalsChrome<br>Bar Wire Charms</p>
+              <p>Rope system.
+                Metal tension.
+                Rear crystal mark.
+                <br>Built for dominance, not comfort.</p>
             </div>
             </div>
             <div class="image-row2">
-              <img src="/assets/imgs/airforce-img1-sinfondo.png" alt="">
+              <img src="/assets/imgs/IMG_2702.webp" alt="V.01">
             </div>
           </div>
+          <div class="btn-alldrops-container">
+              <a href="/products" class="btn-alldrops">BUY NOW</a>
+            </div>
+        </div>
+      
+      {{!-- PINK CRYSTAL --}}
+      
+        <div class="container-drops" data-aos="zoom-in" data-aos-duration="1500">
+          <div class="first-container">
+            <img src="/assets/imgs/IMG_1414.webp" alt="Main image">
+          </div>
+           <div class="second-container">
+            <div class="image-row">
+              <div class="image-row-div">
+                <img src="/assets/imgs/IMG_2041.webp" alt="V.02">
+              </div>
+              <div class="image-row-div no-border">
+                <img src="/assets/imgs/IMG_2578.JPG" alt="V.02">
+              </div>
+            </div>
+            <div class="drops-info">
+              <div class="text1">
+              <h2>BLNKV0ID PINK CRYSTAL EDITION V.02</h2>
+              <p>Custom by blnk.v0id<br>Hand-Embellished</p>
+            </div>
+            <div class="text2">
+              <h2>Features</h2>
+              <p>Pink crystal lines.
+                Gradient stitch work.
+                Three lace modes.
+                <br>Soft color with a dangerous finish</p>
+            </div>
+            </div>
+            <div class="image-row2">
+              <img src="/assets/imgs/IMG_2040.JPG" alt="V.02">
+            </div>
+          </div>
+          <div class="btn-alldrops-container">
+              <a href="/products" class="btn-alldrops">BUY NOW</a>
+            </div>
+        </div>
+     
+      {{!-- BLACK CRYSTAL  --}}
+      
+        <div class="container-drops" data-aos="zoom-in" data-aos-duration="1500">
+          <div class="first-container">
+            <img src="/assets/imgs/IMG_2232.JPG" alt="Main image">
+          </div>
+           <div class="second-container">
+            <div class="image-row">
+              <div class="image-row-div">
+                <img src="/assets/imgs/IMG_2705.webp" alt="V.03">
+              </div>
+              <div class="image-row-div no-border">
+                <img src="/assets/imgs/IMG_2738.webp" alt="V.03">
+              </div>
+            </div>
+            <div class="drops-info">
+              <div class="text1">
+              <h2>BLACK CRYSTAL EDGE EDITION V.03</h2>
+              <p>Custom by blnk.v0id<br>Hand-Embellished</p>
+            </div>
+            <div class="text2">
+              <h2>Features</h2>
+              <p>Black surface.
+                Crystal edge in grey–black.
+                No light, only impact.
+                <br>Engineered for those who move silent and look expensive</p>
+            </div>
+            </div>
+            <div class="image-row2">
+              <img src="/assets/imgs/IMG_2294.JPG" alt="V.03">
+            </div>
+          </div>
+            <div class="btn-alldrops-container">
+              <a href="/products" class="btn-alldrops">BUY NOW</a>
+            </div>
         </div>
       </section>
-
     </main>

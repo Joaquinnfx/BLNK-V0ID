@@ -1,14 +1,15 @@
 <main>
   <section class="products-hero">
-    <div class="overlay" id="products-overlay">
-      <h1 class="section-title">Our Products</h1>
-        <p class="section-subtitle">20 pairs. No restock</p>
+    <div class="overlay" id="products-overlay" data-aos="zoom-in-up" data-aos-duration="1500">
+      <div class="div-overlay">
+        <h1 class="section-title">Our Products</h1>
+        <a href="#products-section" class="continue-shopping-btn" id="btn-products">20 pairs. No restock</a>
+      </div>
     </div>
   </section>
       <section class="banner-products">
-        <div class="div-banner">
+        <div class="div-banner" data-aos="zoom-in-up" data-aos-duration="1500">
           <h2> ~ The void is forming ~ </h2>
-            <p>20 pairs. No restock</p>
           <a href="#productsGrid" class="continue-shopping-btn">
             [ Explore Collection ]
           </a>
@@ -17,13 +18,31 @@
 
 {{!-- GRID PRODUCTOS --}}
 <section class="products-section" id="products-section">
+  {{!-- MODAL SIZE GUIDE --}}
+  <div id="size-guide-modal">
+    <div class="modal-content">
+      <button class="close-btn continue-shopping-btn"> X </button>
+      <div class="size-container-imgs">
+        <img src="/assets/imgs/size-guide-1.webp" alt="Modal Size Guide" class="size-guide-img">
+        <img src="/assets/imgs/size-guide-2.webp" alt="Modal Size Guide" class="size-guide-img">
+      </div>
+    </div>
+  </div>
+  <h2 class="section-title title-products" data-aos="zoom-in-up" data-aos-duration="1500">First Drop</h2>
   <!-- Fondo tipo "Vercel Grid" -->
   <div class="grid-background">
   </div>
   {{#if products}}
   <div class="products-grid" id="productsGrid"> 
       {{#each products}}
-        <div class="product-card">
+      {{!-- CARDS --}}
+        <div class="product-card" data-aos="zoom-in-up" data-aos-duration="1500">
+          {{!-- PRODUCT NAME --}}
+          <div class="product-name">
+            <h2 class="product-title">{{this.name}}</h2>
+            <p class="product-description">{{this.description}}</p>
+          </div>
+          {{!-- PRODUCT THUMBNAIL --}}
           <div class="product-images">
             <img src={{this.image1}} alt={{this.name}} class="product-main-img"/>
             <div class="product-gallery">
@@ -32,9 +51,25 @@
               <img src={{this.image4}} alt={{this.name}} class="product-thumb">
             </div>
           </div>
+          {{!-- SIZE GUIDE --}}
+          <div class="product-size">
+            <button class="size-guide-link">Size Guide</button>
+            <label class="size-label"></label>
+            <select class="size-select">
+              <option value="" disabled selected>Select Size</option>
+              <option value="5">5W / 3.5M</option>
+              <option value="6">6W / 4.5M</option>
+              <option value="7">7W / 5.5M</option>
+              <option value="8">8W / 6.5M</option>
+              <option value="9">9W / 7.5M</option>
+              <option value="10">10W / 8.5M</option>
+              <option value="11">11W / 9.5M</option>
+              <option value="12">12W / 10.5M</option>
+              <option value="13">13W / 11.5M</option>
+            </select>
+          </div>
+          {{!-- PRODUCT INFO --}}
           <div class="product-info">
-            <h2 class="product-title">{{this.name}}</h2>
-            <p class="product-description">{{this.description}}</p>
             <div class="product-details">
               {{#if this.stock}} 
               <div class="product-price">
@@ -46,6 +81,7 @@
                 <span class="stock-amount">{{this.stock}}</span>
                 <span class="stock-unit">units</span>
               </div>
+              {{!-- BUY --}}
               <div class="product-actions">
                 <div class="product-quantity-section">
                   <label class="quantity-label">Quantity:</label>
@@ -65,7 +101,7 @@
                 </button>
               </div>
               {{else}}
-              <div class="product-stock">
+              <div class="product-stock" data-aos="zoom-in-up" data-aos-duration="1500">
                 <span class="sold-out">SOLD OUT</span>
               </div>
               {{/if}}
@@ -75,12 +111,28 @@
       {{/each}}
   </div>
     {{else}}
-    <div class="no-products">
+    <div class="no-products" data-aos="zoom-in-up" data-aos-duration="1500">
       <h2>NO PRODUCTS</h2>
       <button id="glitchButton" class="glitch-btn" data-text="Back to Home">
       <span class="glitch-text">Back to Home</span>
       </button>
     </div>
     {{/if}}
+</section>
+<section class="process-info-section">
+  <div class="process-info-container" data-aos="flip-left" data-aos-duration="1000">
+    <h2 class="process-title">Order, Production & Delivery</h2>
+    <div class="process-info-details">
+      <p>Each pair is individually handcrafted, built with uncompromising attention to detail and the standards of a luxury-grade sneaker.
+        Nothing is mass-produced — every component is treated, assembled, and finished by hand to guarantee a unique, premium-level result. 
+      </p>
+    </div>
+    <div class="process-info-details">
+      <p>Delivery window varies by shipping method.</p>
+    </div>
+    <div class="process-info-details">
+      <p class="arrival-info">Estimated arrival: 7–18 days.</p>
+    </div>
+  </div>
 </section>
 </main>

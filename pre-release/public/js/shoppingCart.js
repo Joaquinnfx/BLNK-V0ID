@@ -1,4 +1,3 @@
-// Cart System for BLNK-V0ID (versión conectada al backend)
 class ShoppingCart {
   constructor() {
     this.products = []; // catálogo desde el backend
@@ -13,9 +12,7 @@ class ShoppingCart {
     this.updateCartDisplay();
   }
 
-  // ----------------------------
   // INTEGRACION CON BACKEND
-  // ----------------------------
 
   async getProducts() {
     try {
@@ -64,10 +61,6 @@ class ShoppingCart {
       console.error(err);
     }
   }
-
-  // ----------------------------
-  // EVENTOS E INTERFAZ
-  // ----------------------------
 
   bindEvents() {
     // Abrir y cerrar carrito
@@ -122,10 +115,6 @@ class ShoppingCart {
       document.body.style.overflow = "";
     }
   }
-
-  // ----------------------------
-  // RENDERIZAR CARRITO
-  // ----------------------------
 
   updateCartDisplay() {
     const cartItems = document.getElementById("cartItems");
@@ -246,7 +235,7 @@ class ShoppingCart {
 
     this.closeCart();
 
-    // Redirigir al checkout (Stripe más adelante)
+    // Redirigir al checkout
     const baseUrl = window.location.origin;
     window.location.href = `${baseUrl}/checkout`;
   }

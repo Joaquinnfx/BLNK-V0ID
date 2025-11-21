@@ -1,10 +1,11 @@
 {
   "name": "blnk-v0id-final-host",
   "version": "1.0.0",
-  "main": "script.js",
   "type": "module",
+  "main": "backend/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node backend/app.js",
+    "dev": "nodemon backend/app.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   "homepage": "https://github.com/Joaquinnfx/BLNK-V0ID#readme",
   "description": "",
   "dependencies": {
+    "aos": "^2.3.4",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "express-handlebars": "^8.0.3",
@@ -27,5 +29,8 @@
     "mysql2": "^3.15.3",
     "stripe": "^19.2.0",
     "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
   }
 }

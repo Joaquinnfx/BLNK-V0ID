@@ -23,6 +23,7 @@ class CheckoutPage {
       this.cartItems = items.map(item => ({
         id: item.product_id || item.id,
         name: item.name || "Product without name",
+        size: item.size,
         price: Number(item.price) || 0,
         quantity: Number(item.quantity) || 1,
         image: item.image || item.image1 || "/assets/imgs/default.jpg"
@@ -64,6 +65,7 @@ class CheckoutPage {
         <div class="cart-page-item-details">
           <h3 class="cart-page-item-name">${item.name}</h3>
           <div class="cart-page-item-price">
+          <h4>Size: ${item.size}</h4>
             $${(item.price * item.quantity).toFixed(2)}
             <small>(${item.quantity} × $${item.price.toFixed(2)})</small>
           </div>
@@ -146,7 +148,7 @@ class CheckoutPage {
     }
   }
 
-  /** Actualiza el resumen del pedido (solo subtotal y total) */
+  /** Actualiza el resumen del pedido (solo subtotal) */
   updateOrderSummary() {
     const subtotal = this.getSubtotal();
     const subtotalElement = document.querySelector('.page-cart-subtotal');
