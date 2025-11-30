@@ -30,7 +30,7 @@ app.use(
     resave: false, //evita que la sesion se vuelva a guardar en el servidor si NO hubo cambios
     saveUninitialized: false, //permite guardar nuevas sesiones que todavía no fueron modificadas (por ejemplo cuando un usuario nuevo entra y todavía no agregó nada al carrito).
       cookie: {
-      secure: false, //indica que la cookie NO requiere HTTPS (en local debe ser false) (EN PRODUCCION CAMBIAR A TRUE )
+      secure: true, //indica que la cookie NO requiere HTTPS (en local debe ser false) (EN PRODUCCION CAMBIAR A TRUE )
       httpOnly: true, // evita acceso desde JS
       sameSite: "strict", // evita CSRF
       maxAge: 1000 * 60 * 60 * 24, // 1 día
@@ -110,13 +110,19 @@ app.get("/products", async (req, res) => {
     const products = await productManager.getProducts();
     res.render("products", { title: "BLNK-V0ID | First Drop", products, isHome: false });
   } catch (error) {
-    res.status(500).send("Error al cargar los productos: " + error.message);
+    console.error("Error en /products:", error);
+    return res.render("products", { title: "BLNK-V0ID | First Drop", products: [], error: "No se pudo cargar los productos" });
   }
 });
 
 app.get("/cart", async (req, res) => {
-  const items = await cartManager.getCartItems(req.session.sessionId);
-  res.render("cart", { title: "Your Cart", items });
+  try {
+    const items = await cartManager.getCartItems(req.session.sessionId);
+    return res.render("cart", { title: "Your Cart", items });
+  } catch (error) {
+    console.error("Error en /cart:", error);
+    return res.render("cart", { title: "Your Cart", items: [], error: "No se pudo cargar el carrito" });
+  }
 });
 
 // Endpoint clásico desde formularios
