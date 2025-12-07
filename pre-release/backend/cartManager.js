@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 import pool from "./db.js";
 
 class CartManager {
-  // Crear un nuevo carrito (para nueva sesión)
+  //Crear un nuevo carrito (para nueva sesión)
   async createCart(sessionId = null) {
     try {
       if (!sessionId) sessionId = uuidv4(); // genera un id único
@@ -78,34 +78,36 @@ class CartManager {
   }
 
   // Obtener todos los productos del carrito
-  async getCartItems(sessionId) {
-    try {
-      const cart = await this.getCartBySession(sessionId);
-      if (!cart) return [];
+async getCartItems(sessionId) {
+  try {
+    const cart = await this.getCartBySession(sessionId);
+    if (!cart) return [];
 
-      const [rows] = await pool.query(`
-      SELECT 
-      ci.id AS cart_item_id,
-      p.id,
-      p.name,
-      p.description,
-      p.price,
-      p.stock,
-      p.image1 AS image,
-      ci.quantity,
-      ci.size
+    const [rows] = await pool.query(`
+      SELECT
+        ci.id AS cart_item_id,
+        p.id,
+        p.name,
+        p.description,
+        p.price,
+        p.stock,
+        p.image1 AS image,
+        ci.quantity,
+        ci.size
       FROM cart_items ci
       JOIN products p ON ci.product_id = p.id
-      WHERE ci.cart_id = ?`, 
-      [cart.id]);
+      WHERE ci.cart_id = ?
+	`, [cart.id]
+	);
 
-      return rows;
-    } catch (error) {
-      throw new Error("Error al obtener los productos del carrito: " + error.message);
-    }
+    return rows;
+
+  } catch (error) {
+    throw new Error("Error al obtener los productos del carrito: " + error.message);
   }
+}
 
-  // Obtener carrito completo (estructura)
+// Obtener carrito completo (estructura)
   async getCart(sessionId) {
     try {
       const cart = await this.getCartBySession(sessionId);
@@ -115,7 +117,7 @@ class CartManager {
     } catch (error) {
       throw new Error("Error al obtener el carrito: " + error.message);
     }
-  }
+}
 
   // Eliminar un producto específico del carrito
   async removeFromCart(sessionId, productId) {
@@ -132,7 +134,7 @@ class CartManager {
     } catch (error) {
       throw new Error("Error al eliminar producto del carrito: " + error.message);
     }
-  }
+  };
 
    async updateQuantity(sessionId, productId, quantity) {
     try {
@@ -169,7 +171,7 @@ class CartManager {
       console.error("Error en updateQuantity:", err);
       throw err;
     }
-  }
+  };
 
   // Vaciar el carrito completo
   async clearCart(sessionId) {
@@ -195,7 +197,7 @@ class CartManager {
     console.error("Error al vaciar carrito:", error);
     throw error;
   }
-}
-}
+};
+};
 
 export default CartManager;

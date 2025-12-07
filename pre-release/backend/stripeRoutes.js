@@ -1,13 +1,11 @@
 // stripeRoutes.js
+
 import express from "express";
 import Stripe from "stripe";
-import dotenv from "dotenv";
 import pool from "./db.js";
 import CartManager from "./cartManager.js";
 import ProductManager from "./productManager.js";
 import bodyParser from "body-parser";
-
-dotenv.config();
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const cartManager = new CartManager();
@@ -138,7 +136,7 @@ stripeRouter.post("/create-checkout-session", async (req, res) => {
     res.json({ id: session.id, url: session.url });
   } catch (error) {
     console.error("Error creando sesión de Stripe:", error);
-    res.status(500).json({ error: "Error creando la sesión de pago" });
+    res.status(500).json({ error: "Error creating payment session " });
   }
 });
 

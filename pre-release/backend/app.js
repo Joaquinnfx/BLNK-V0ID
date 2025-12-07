@@ -1,23 +1,23 @@
-import express from "express";
-import { engine } from "express-handlebars";
-import session from "express-session";
-import path from "path";
-import { fileURLToPath } from "url";
-import pool from "./db.js";
-import ProductManager from "./productManager.js";
-import CartManager from "./cartManager.js";
-import stripeRouter from "./stripeRoutes.js";
-import dotenv from "dotenv";
-
-dotenv.config();
+import dotenv from "dotenv"; 
+dotenv.config(); 
+import express from "express"; 
+import { engine } from "express-handlebars"; 
+import session from "express-session"; 
+import path from "path"; 
+import { fileURLToPath } from "url"; 
+import pool from "./db.js"; 
+import ProductManager from "./productManager.js"; 
+import CartManager from "./cartManager.js"; 
+import stripeRouter from "./stripeRoutes.js"; 
+import {v4 as uuidv4} from "uuid";
 
 // Inicialización
 const app = express();
 
 //Variables de entorno
-const isProduction = process.env.NODE_ENV === "production";
-const PORT = process.env.PORT || 3000;
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+const isProduction = process.env.NODE_ENV === "production"; const PORT = 
+process.env.PORT || 3000; const stripeSecretKey = 
+process.env.STRIPE_SECRET_KEY;
 
 //Middlewares
 app.use(express.json());
@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 // Configura sistema de sesiones, permite que los usuarios tengan su propio estado persistente en el servidor x mas que no tengan login
 app.use(
   session({
-    secret: stripeSecretKey, 
+    secret: stripeSecretKey,
     resave: false, //evita que la sesion se vuelva a guardar en el servidor si NO hubo cambios
     saveUninitialized: false, //permite guardar nuevas sesiones que todavía no fueron modificadas (por ejemplo cuando un usuario nuevo entra y todavía no agregó nada al carrito).
       cookie: {
@@ -34,7 +34,7 @@ app.use(
       httpOnly: true, // evita acceso desde JS
       sameSite: "strict", // evita CSRF
       maxAge: 1000 * 60 * 60 * 24, // 1 día
-    }, 
+    },
   })
 );
 
@@ -73,12 +73,26 @@ app.use(async (req, res, next) => {
         console.error("Error guardando la sesión:", error);
       }
     });
-  
+
     next();
   }catch(error){
     res.status(500).json({ error: "Error interno al gestionar el carrito" })
   }
 });
+
+//MODO LANZAMIENTO: Teaser temporal
+const MAINTENANCE_MODE = false;
+
+app.use((req, res, next) => {
+  if (MAINTENANCE_MODE && req.path !== "/teaser") {
+    return res.render("teaser", {
+      title: "Coming Soon – BLNK-V0ID",
+      isMaintenance: true
+    });
+  }
+  next();
+});
+
 
 // RUTAS DE VISTAS (Handlebars)
 app.get("/", async (req, res) => {
@@ -110,13 +124,19 @@ app.get("/products", async (req, res) => {
     const products = await productManager.getProducts();
     res.render("products", { title: "BLNK-V0ID | First Drop", products, isHome: false });
   } catch (error) {
-    res.status(500).send("Error al cargar los productos: " + error.message);
+    console.error("Error en /products:", error);
+    return res.render("products", { title: "BLNK-V0ID | First Drop", products: [], error: "No se pudo cargar los productos" });
   }
 });
 
 app.get("/cart", async (req, res) => {
-  const items = await cartManager.getCartItems(req.session.sessionId);
-  res.render("cart", { title: "Your Cart", items });
+  try {
+    const items = await cartManager.getCartItems(req.session.sessionId);
+    return res.render("cart", { title: "Your Cart", items });
+  } catch (error) {
+    console.error("Error en /cart:", error);
+    return res.render("cart", { title: "Your Cart", items: [], error: "No se pudo cargar el carrito" });
+  }
 });
 
 // Endpoint clásico desde formularios
@@ -199,7 +219,7 @@ apiRouter.post("/cart/add/:pid", async (req, res) => {
     res.json({ message: "Producto agregado correctamente" });
   }catch(error){
     res.status(500).json({ error: "Error al agregar el producto al carrito" });
-  };
+  }
 });
 
 apiRouter.delete("/cart/delete/:pid", async (req, res) => {
@@ -249,3 +269,4 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`Servidor corriendo`);
 });
+

@@ -42,14 +42,16 @@ header a {
 }
 
 .h1-logo {
+  height: 110px;
   display: flex;
   align-items: center;
 }
 
 #img-logo {
-  width: 100%;
-  height: 110px;
-  object-fit: cover;
+  width: auto;
+  height: 100%;
+  max-height: 110px;
+  object-fit: contain;
 }
 
 /* Botón del menú hamburguesa */
@@ -420,13 +422,13 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 25px 0px;
+  padding: 40px 25px;
   width: 100%;
   background: url("/assets/imgs/fondo-tarjetas-horiz.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  /* background-attachment: fixed; COMENTADO XQ EN IOS GENERA ERRORES DE RESOLUCION */
 }
 
 .div-banner-products {
@@ -1105,14 +1107,24 @@ main {
 
 /* PRODUCTS SECTION */
 .products-hero {
-  background: url("../assets/imgs/IMG-9072-fondonegro.jpg");
-  height: 90vh;
+  height: 100vh;
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+  /*background-attachment: fixed; */
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.video-bg{
+  position: absolute;
+  top:72%;
+  left: 50%;
+  width: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+
 }
 
 .title-products {
@@ -1287,20 +1299,6 @@ main {
   100% {
     text-shadow: 1px -1px #e20d13, -1px 1px #00fff7;
   }
-}
-
-/* Fondo con cuadrícula */
-.grid-background {
-  position: absolute;
-  inset: 0;
-  opacity: 0.3;
-  z-index: 0;
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0.45) 1px,
-      transparent 1px
-    ),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.45) 1px, transparent 1px);
-  background-size: 60px 60px;
 }
 
 /* === Contenedor de productos === */
@@ -2528,7 +2526,7 @@ main {
   background: url(../assets/imgs/new-logo-sinfondo.png);
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+  /*background-attachment: fixed; COMENTADO XQ EN IOS GENERA ERRORES DE RESOLUCION */
   gap: 50px;
   justify-content: center;
   min-height: 90vh;
@@ -3300,4 +3298,82 @@ li:hover {
     padding: 60px 25px;
     text-align: center;
   }
+}
+
+@media (max-width: 1200px) {
+  .grid-limited-edition{
+    height: 90vh;
+    grid-template-rows: 200px 130px 170px 200px;
+  }
+
+  .banner-products{
+    padding: 40px 25px;
+  }
+
+  .banner-products h2{
+    text-align: center;
+  }
+
+  .container-drops {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 90vh;
+    width: 100%;
+    margin: 30px 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(227, 227, 227, 0.1);
+    border: 5px solid #ffffff;
+    transition: all 0.7s ease;
+  }
+
+  .first-container {
+    height: 50%;
+    width: 100%;
+    border-right: none;
+    border-bottom: 5px solid #ffffff;
+  }
+
+  .first-container img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .second-container {
+    height: 60%;
+    width: 100%;
+  }
+
+  .btn-alldrops-container {
+    bottom: 62%;
+  }
+
+  .btn-alldrops{
+    width: 90%;
+  }
+
+  #products-section {
+    text-align: center;
+  }
+
+  #products-overlay {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .div-overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .products-grid{
+    grid-template-columns: 1fr;
+    margin: 0px 40px;
+  }
+ 
 }

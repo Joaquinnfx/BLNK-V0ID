@@ -1,5 +1,8 @@
 <main>
   <section class="products-hero">
+	<video class="video-bg" autoplay muted loop playsinline>
+		<source src="/assets/vids/EXPO_MODEL.mp4" type="video/mp4">
+	</video>
     <div class="overlay" id="products-overlay" data-aos="zoom-in-up" data-aos-duration="1500">
       <div class="div-overlay">
         <h1 class="section-title">Our Products</h1>
@@ -29,9 +32,6 @@
     </div>
   </div>
   <h2 class="section-title title-products" data-aos="zoom-in-up" data-aos-duration="1500">First Drop</h2>
-  <!-- Fondo tipo "Vercel Grid" -->
-  <div class="grid-background">
-  </div>
   {{#if products}}
   <div class="products-grid" id="productsGrid"> 
       {{#each products}}
