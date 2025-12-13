@@ -1110,7 +1110,6 @@ main {
   height: 100vh;
   background-size: cover;
   background-position: center;
-  /*background-attachment: fixed; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1168,8 +1167,35 @@ main {
   overflow: hidden;
 }
 
-/* DIV para cuando no hay productos disponibles */
+/* PAGINAS DE ERROR */
 
+.error-container{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.error-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #1f1f1f;
+  border-radius: 15px;
+  padding: 40px;
+  width: 50%;
+  gap: 15px;
+  margin-top: 10%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.error-btn{
+  display:flex;
+  gap: 15px;
+}
+
+/* DIV para cuando no hay productos disponibles */
 .no-products {
   display: flex;
   flex-direction: column;
@@ -2988,18 +3014,6 @@ li:hover {
 
   /*CARROUSEL RESPONSIVE*/
 
-  .carrousel-section {
-    height: 50vh;
-  }
-
-  .div-carrousel {
-    height: 50vh;
-  }
-
-  .vc-viewport {
-    height: 50vh;
-  }
-
   .grid-limited-edition {
     display: flex;
     flex-direction: column;
@@ -3009,10 +3023,6 @@ li:hover {
 
   #home-title {
     font-size: 3rem;
-  }
-
-  .void-carrousel {
-    height: 50vh;
   }
 
   .vc-arrow {
@@ -3036,8 +3046,6 @@ li:hover {
     flex-direction: column;
     align-items: center;
   }
-
-  /* Container all drops */
 
   /* CART PAGE RESPONSIVE  */
 
@@ -3095,6 +3103,14 @@ li:hover {
   /* PRODUCTS PAGE RESPONSIVE */
   #products-section {
     text-align: center;
+  }
+
+  .products-hero{
+    height: 65vh;
+  }
+  
+  .video-bg{
+    top: 50%
   }
 
   #products-overlay {
@@ -3203,11 +3219,16 @@ li:hover {
     font-size: 1.5rem;
   }
 
+  /* ERROR PAGE */
+  .error-div{
+    width: 95%;
+  }
+
   /* FOOTER RESPONSIVE */
   #foot {
     display: flex;
-    flex-direction: row;
   }
+
   #foot .div-foot {
     display: flex;
     flex-direction: column;
@@ -3217,8 +3238,6 @@ li:hover {
 
   #foot .div-foot-i {
     gap: 10px;
-    margin-bottom: 50px;
-    margin-left: 50px;
   }
 
   .ul-foot {

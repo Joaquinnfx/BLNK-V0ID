@@ -140,46 +140,6 @@ stripeRouter.post("/create-checkout-session", async (req, res) => {
   }
 });
 
-//Página de éxito (después del pago)
-// stripeRouter.get("/success", async (req, res) => {
-//   const sessionId = req.query.session_id;
-
-//   if (!sessionId) return res.status(400).send("Missing session_id");
-
-//   try {
-//     // Obtener la orden ya creada por el webhook
-//     const [orders] = await pool.query(
-//       "SELECT * FROM orders WHERE id = ?",
-//       [sessionId]
-//     );
-
-//     if (!orders.length) {
-//       return res.status(404).send("Order not found");
-//     }
-
-//     const order = orders[0];
-
-//     // Obtener los productos que YA fueron guardados por el webhook
-//     const [items] = await pool.query(
-//       "SELECT product_id, product_name AS name, quantity, price, size FROM order_items WHERE order_id = ?",
-//       [sessionId]
-//     );
-
-//     res.render("success", {
-//       layout: "main",
-//       title: "Payment successful - BLNK-V0ID",
-//       order_id: order.id,
-//       customer_email: order.customer_email,
-//       total_amount: order.total.toFixed(2),
-//       items
-//     });
-
-//   } catch (err) {
-//     console.error("Error al procesar éxito Stripe:", err);
-//     res.status(500).send("Error loading success page");
-//   }
-// });
-
 stripeRouter.get("/success", async (req, res) => {
   const sessionId = req.query.session_id;
   const localSession = req.session.sessionId;
@@ -196,7 +156,7 @@ stripeRouter.get("/success", async (req, res) => {
 
     // 1 Guardar la orden en tu base de datos
     const [orderResult] = await pool.query(
-      "INSERT INTO orders (stripe_session_id, customer_email, total) VALUES (?, ?, ?)",
+      "INSERT INTO orders (stripe_session_id, customer_email, total, size) VALUES (?, ?, ?)",
       [
         session.id,
         session.customer_details?.email || "Cliente desconocido",
@@ -216,13 +176,14 @@ stripeRouter.get("/success", async (req, res) => {
   const size = purchasedSizes[i]?.size || null;
 
   await pool.query(
-    "INSERT INTO order_items (order_id, product_name, quantity, price, size) VALUES (?, ?, ?, ?, ?)",
+    "INSERT INTO order_items (order_id, product_id, product_name, quantity, size, price) VALUES (?, ?, ?, ?, ?, ?)",
     [
       orderId,
+      productId,
       item.description,
       item.quantity,
-      item.amount_subtotal / 100,
-      size
+      size,
+      item.amount_subtotal / 100
     ]
   );
 }

@@ -71,8 +71,7 @@ class CartManager {
 
       return { message: "Producto agregado correctamente", cartId: cart.id };
     } catch (error) {
-      // console.error("ERROR SQL:", error);
-      // throw error;
+      
       throw new Error("Error al agregar producto al carrito: " + error.message);
     }
   }

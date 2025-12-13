@@ -15,9 +15,9 @@ import {v4 as uuidv4} from "uuid";
 const app = express();
 
 //Variables de entorno
-const isProduction = process.env.NODE_ENV === "production"; const PORT = 
-process.env.PORT || 3000; const stripeSecretKey = 
-process.env.STRIPE_SECRET_KEY;
+const isProduction = process.env.NODE_ENV === "production"; 
+const PORT = process.env.PORT || 3000; 
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 
 //Middlewares
 app.use(express.json());
@@ -57,7 +57,6 @@ app.set("view engine", "handlebars");
 app.set("views", path.join(__dirname, "../views"));
 
 // Middleware: crear carrito si no existe
-
 app.use(async (req, res, next) => {
   try{
     if (!req.session.sessionId) {
@@ -66,17 +65,16 @@ app.use(async (req, res, next) => {
         return res.status(500).json( {error: "Error creando el carrito"} )
       };
       req.session.sessionId = cart.sessionId;
-      console.log("Nuevo carrito creado:", cart.sessionId);
     };
     req.session.save(error => {
       if(error){
         console.error("Error guardando la sesión:", error);
       }
     });
-
     next();
+
   }catch(error){
-    res.status(500).json({ error: "Error interno al gestionar el carrito" })
+    next(error);
   }
 });
 
@@ -95,15 +93,14 @@ app.use((req, res, next) => {
 
 
 // RUTAS DE VISTAS (Handlebars)
-app.get("/", async (req, res) => {
+app.get("/", async (req, res, next) => {
   try{
     const products = await productManager.getProducts();
     const featuredProduct = products[0];
     res.render("home", { title: "BLNK-V0ID | Home", featuredProduct, isHome: true });
 
   }catch(error){
-
-    res.status(500).send("Error al cargar los productos: " + error.message);
+    next(error); //Delego el error al handler global
   }
 });
 
@@ -164,6 +161,7 @@ apiRouter.get("/products", async (req, res) => {
     res.json({ message: "Lista de productos", products });
   } catch (error) {
     res.status(500).json({ error: "Error al obtener los productos" });
+    return res.render("products", { products: [] })
   }
 });
 
@@ -259,11 +257,36 @@ try {
   console.error("Error al conectar con MySQL:", error.message);
 }
 
+// 404 ruta no encontrada
+app.use((req, res) => {
+  res.status(404).render("404", {
+    layout: "main",
+    title: "BLNK-V0ID | Page not found",
+    message: "The page you are looking for does not exist"
+  });
+});
+
 // Manejo global de errores (seguridad)
 app.use((err, req, res, next) => {
-  console.error("Error:", err);
-  res.status(500).send("Internal server error");
+
+  console.error(err);
+  const status = err.status || 500;
+
+  // Si es una ruta API, JSON
+  if (req.originalUrl.startsWith("/api")) {
+    return res.status(status).json({
+      error: err.message || "Internal server error"
+    });
+  }
+
+  // Si es una vista, renderizar Handlebars
+  res.status(status).render("error", {
+    layout: "main",
+    title: "Something went wrong",
+    message: err.message || "There was a server problem. Please try again"
+  });
 });
+
 
 // Servidor
 app.listen(PORT, () => {
